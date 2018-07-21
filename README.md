@@ -1,5 +1,4 @@
 - [leetcode](https://leetcode.com/)
-- [leetcode中国](https://leetcode-cn.com/)
 
 | # | Title | Solution | Difficulty |
 |---| ----- | -------- | ---------- |
