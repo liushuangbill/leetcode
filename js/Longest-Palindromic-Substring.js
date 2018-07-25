@@ -13,15 +13,7 @@ var longestPalindrome = function (s) {
   // 对称点比较法
   // 回文子串长度为奇数，对称点只有一个字符
   for (let i = 0; i < len; i++) {
-    let left = i
-    let right = i
-
-    while (left > 0 && right < len - 1 && s[left - 1] === s[right + 1]) {
-      left -= 1
-      right += 1
-    }
-
-    let str = s.slice(left, right + 1)
+    let str = getPalindrome(len, s, i, i)
     if (str.length > ans.length) {
       ans = str
     }
@@ -31,15 +23,7 @@ var longestPalindrome = function (s) {
   for (let i = 0; i < len - 1; i++) {
     // 对称点相同才有比较的意义
     if (s[i] === s[i + 1]) {
-      let left = i
-      let right = i + 1
-
-      while (left > 0 && right < len - 1 && s[left - 1] === s[right + 1]) {
-        left -= 1
-        right += 1
-      }
-
-      let str = s.slice(left, right + 1)
+      let str = getPalindrome(len, s, i, i + 1)
       if (str.length > ans.length) {
         ans = str
       }
@@ -47,4 +31,12 @@ var longestPalindrome = function (s) {
   }
 
   return ans
+}
+
+function getPalindrome(len, s, left, right) {
+  while (left > 0 && right < len - 1 && s[left - 1] === s[right + 1]) {
+    left -= 1
+    right += 1
+  }
+  return s.slice(left, right + 1)
 }
