@@ -3,7 +3,7 @@
   如果存在，我们需要找出它的索引。保持数组中的每个元素与其索引相互对应的最好方法是什么？
   哈希表。
 */
-
+// 使用object快速查找
 var twoSum = function (nums, target) {
   const map = {}
   const len = nums.length
