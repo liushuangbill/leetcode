@@ -7,31 +7,26 @@ function ListNode(val) {
  * @param {ListNode} l2 头节点
  * @return {ListNode}
  */
-var addTwoNumbers = function (l1, l2) {
-  const Head = new ListNode(0)
-  let curr = Head
-  // 代表进位
-  let carray = 0
-
-  while (l1 || l2) {
-    const val1 = l1 ? l1.val : 0
-    const val2 = l2 ? l2.val : 0
-    const s = val1 + val2 + carray
-    if (s > 9) {
-      curr.next = new ListNode(s - 10)
-      carray = 1
-    } else {
-      curr.next = new ListNode(s)
-      carray = 0
-    }
-    curr = curr.next
-    if (l1) l1 = l1.next
-    if (l2) l2 = l2.next
+var addTwoNumbers = function(l1, l2) {
+  const head = new ListNode(null)
+  let cur = head
+  let carry = 0
+  
+  while (l1 || l2 || carry) {
+      let sum = carry
+      if (l1) {
+          sum += l1.val
+          l1 = l1.next
+      }
+      if (l2) {
+          sum += l2.val
+          l2 = l2.next
+      }
+      
+      carry = sum >= 10 ? 1 : 0
+      cur.next = new ListNode(sum % 10)
+      cur = cur.next
   }
-
-  if (carray) {
-    curr.next = new ListNode(1)
-  }
-
-  return Head.next
+  
+  return head.next
 };
