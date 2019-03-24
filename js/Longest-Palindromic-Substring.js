@@ -2,35 +2,26 @@
  * @param {string} s
  * @return {string}
  */
-var longestPalindrome = function (s) {
-  const len = s.length
+var longestPalindrome = function(s) {
   let ans = ''
-
-  // 对称点为奇数
+  const len = s.length
   for (let i = 0; i < len; i++) {
-    const str = getPalindrome(len, s, i, i)
-    if (str.length > ans.length) {
-      ans = str
-    }
+    // 子串为偶数
+    const str1 = getPalindrome(s, i, i)
+    // 子串为奇数
+    const str2 = s[i] === s[i + 1] ? getPalindrome(s, i, i + 1) : ''
+    const str = str1.length > str2.length ? str1 : str2
+    ans = str.length > ans.length ? str : ans
   }
-
-  // 对称点为偶数
-  for (let i = 0; i < len - 1; i++) {
-    if (s[i] === s[i + 1]) {
-      const str = getPalindrome(len, s, i, i + 1)
-      if (str.length > ans.length) {
-        ans = str
-      }
-    }
-  }
-
   return ans
-};
-
-function getPalindrome(len, s, left, right) {
-  while (left > 0 && right < len - 1 && s[left - 1] === s[right + 1]) {
-    left -= 1
-    right += 1
+  
+  // 根据中心点向外，查找回文子串
+  function getPalindrome(s, l, r) {
+    const len = s.length
+    while (l > 0 && r < len - 1 && s[l - 1] == s[r + 1]) {
+      l -= 1
+      r += 1
+    }
+    return s.slice(l, r + 1)
   }
-  return s.slice(left, right + 1)
-}
+};
