@@ -1,10 +1,10 @@
-package leetcode
+package main
 
 func twoSum(nums []int, target int) []int {
 	m := make(map[int]int)
-	len := len(nums)
+	length := len(nums)
 	var ans []int
-	for i := 0; i < len;i++ {
+	for i := 0; i < length; i++ {
 		cc := target - nums[i]
 		k, ok := m[cc]
 		if !ok {
@@ -13,6 +13,6 @@ func twoSum(nums []int, target int) []int {
 			return append(ans, k, i)
 		}
 	}
-	
+
 	return ans
 }
