@@ -30,10 +30,3 @@ func longestOnes(A []int, K int) int {
 	}
 	return maxLen
 }
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
